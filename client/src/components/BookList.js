@@ -1,36 +1,46 @@
 import React, {Component} from 'react';
-import {getBooksQuery} from '../queries/queries';
-import {graphql} from 'react-apollo';
+import {getBooksQuery, deleteBookMutation} from '../queries/queries';
+import {graphql, compose} from 'react-apollo';
 import BookDetails from './BookDetails';
 
 class BookList extends Component {
   constructor(props) {
     super(props);
 
-    this.handleChangeCurrentBookView = this.handleChangeCurrentBookView.bind(this);
+    this.handleSelectBook = this.handleSelectBook.bind(this);
+    this.handleDeleteBook = this.handleDeleteBook.bind(this);
 
     this.state = {
-      bookId: null
+      selectedBookId: null
     };
   }
 
-  handleChangeCurrentBookView(bookId) {
-    this.setState({bookId});
+  handleSelectBook(selectedBookId) {
+    this.setState({selectedBookId});
+  }
+
+  handleDeleteBook(e, id) {
+    e.stopPropagation();
+    this.props.deleteBookMutation({
+      variables: {id},
+      refetchQueries: [{query: getBooksQuery}]
+    });
   }
 
   displayBooks() {
-    const {data} = this.props;
-    if (data.loading) {
+    const {getBooksQuery: {loading, books}} = this.props;
+    if (loading) {
       return <div>Loading books...</div>
     } else {
       return (
         <ul>
-          {data.books.map(({id, name, author}) => (
+          {books.map(({id, name, author}) => (
             <li
               key={id}
-              onClick={() => this.handleChangeCurrentBookView(id)}
+              onClick={() => this.handleSelectBook(id)}
             >
               {name}
+              <button onClick={e => this.handleDeleteBook(e, id)}>Delete</button>
             </li>
           ))}
         </ul>
@@ -42,10 +52,13 @@ class BookList extends Component {
     return (
       <div className="book-list">
         {this.displayBooks()}
-        <BookDetails id={this.state.bookId}/>
+        <BookDetails id={this.state.selectedBookId}/>
       </div>
     );
   }
 }
 
-export default graphql(getBooksQuery)(BookList);
+export default compose(
+  graphql(getBooksQuery, {name: "getBooksQuery"}),
+  graphql(deleteBookMutation, {name: "deleteBookMutation"})
+)(BookList);

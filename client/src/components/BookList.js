@@ -30,7 +30,7 @@ class BookList extends Component {
               key={id}
               onClick={() => this.handleChangeCurrentBookView(id)}
             >
-              {name} - {author.name}
+              {name}
             </li>
           ))}
         </ul>
@@ -40,7 +40,7 @@ class BookList extends Component {
 
   render() {
     return (
-      <div id="main">
+      <div className="book-list">
         {this.displayBooks()}
         <BookDetails id={this.state.bookId}/>
       </div>

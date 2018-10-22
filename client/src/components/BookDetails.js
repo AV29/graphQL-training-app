@@ -19,7 +19,7 @@ class BookDetails extends Component {
           <p>Genre: {book.genre}</p>
           <p>All books by this author</p>
           <ul className="other-books">
-            {book.author.books.map(({id, name, genre}) => (<li key={id}>Name: {name}</li>))}
+            {book.author.books.map(({id, name}) => (<li key={id}>{name}</li>))}
           </ul>
         </div>
       );

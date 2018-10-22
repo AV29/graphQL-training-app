@@ -43,26 +43,24 @@ class AddBook extends Component {
 
   render() {
     return (
-      <div>
-        <form id="add-book" onSubmit={this.handleSubmit}>
-          <div className="field">
-            <label>Book name:</label>
-            <input type="text" name="name" onChange={this.handleChange}/>
-          </div>
-          <div className="field">
-            <label>Genre:</label>
-            <input type="text" name="genre" onChange={this.handleChange}/>
-          </div>
-          <div className="field">
-            <label>Author:</label>
-            <select onChange={this.handleChange} name="authorId">
-              <option>Select author</option>
-              { this.displayAuthors() }
-            </select>
-          </div>
-          <button type="submit">+</button>
-        </form>
-      </div>
+      <form className="add-book" onSubmit={this.handleSubmit}>
+        <div className="field">
+          <label>Book name:</label>
+          <input type="text" name="name" onChange={this.handleChange}/>
+        </div>
+        <div className="field">
+          <label>Genre:</label>
+          <input type="text" name="genre" onChange={this.handleChange}/>
+        </div>
+        <div className="field">
+          <label>Author:</label>
+          <select onChange={this.handleChange} name="authorId">
+            <option>Select author</option>
+            { this.displayAuthors() }
+          </select>
+        </div>
+        <button type="submit">Add</button>
+      </form>
     );
   }
 }

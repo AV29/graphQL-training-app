@@ -3,13 +3,98 @@ body {
   padding: 10px;
   background: #eeeeee;
   letter-spacing: 1px;
-  font-family: Consolas,monaco,"Ubuntu Mono",courier,monospace!important;
+  font-family: Consolas, monaco, "Ubuntu Mono", courier, monospace !important;
 }
 
 p {
-  margin: 0
+  margin: 5px;
+}
+
+.main h1 {
+  color: #444;
+  text-align: center;
+}
+
+.main {
+  padding: 0;
+  box-sizing: border-box;
+  width: 60%;
+  height: 100vh;
+  flex-direction: column;
+  display: flex;
 }
 
 .book-details {
   margin: 10px 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  background: #AD1457;
+  padding: 30px;
+  overflow: auto;
+  box-shadow: -2px -3px 5px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  color: #fff;
+}
+
+.book-list {
+  padding: 0;
+  flex: 1 1;
+  max-height: 75%;
+  overflow: auto;
+}
+
+.book-list li {
+  display: inline-block;
+  margin: 12px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #880E4F;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  color: #880E4F;
+}
+
+.other-books li {
+  border: 1px solid #eeeeee;
+  color: #eeeeee;
+}
+
+.add-book {
+  margin: 0 auto;
+}
+
+form {
+  background: #fff;
+  padding: 20px;
+  width: 400px;
+}
+
+form .field {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+form label {
+  text-align: right;
+  padding: 6px;
+}
+
+form input, form select {
+  margin: 4px 0;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+form button {
+  color: #880E4F;
+  border: 1px solid #880E4F;
+  background: #fff;
+  padding: 10px;
+  min-width: 70px;
+  border-radius: 5px;
+  cursor: pointer;
 }

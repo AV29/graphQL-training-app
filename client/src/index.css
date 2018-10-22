@@ -5,3 +5,11 @@ body {
   letter-spacing: 1px;
   font-family: Consolas,monaco,"Ubuntu Mono",courier,monospace!important;
 }
+
+p {
+  margin: 0
+}
+
+.book-details {
+  margin: 10px 0;
+}
